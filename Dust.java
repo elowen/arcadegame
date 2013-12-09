@@ -10,23 +10,23 @@ import java.awt.event.*;
 
 
 class Dust {
-  private int x, y, dx, dy;
+  private double dx, dy, x,y;
 
   public Dust( ) {
     Random r = new Random( );
-    x = r.nextInt(500);
-    y = r.nextInt(500);
-    dx = r.nextInt(2) - 1;
-    dy = r.nextInt(2) + 3;
+    x = r.nextFloat()*500;
+    y = r.nextFloat()*500;
+    dx = r.nextFloat()*50 - 25;
+    dy = r.nextFloat()*50 + 100;
   }
 
   public void draw(Graphics g) {
-    g.fillRect(x, y, 3, 3);
+    g.fillRect((int)x, (int)y, 3, 3);
   }
 
-  public void update( ) {
-    x += dx;
-    y += dy;
+  public void update(double dt) {
+    x += (dx * dt);
+    y += (dy * dt);
 
     if(y < 0) y = 500;
     if(y > 500) y = 0;

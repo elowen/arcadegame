@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class Main {
   public static void main(String args[]) {
     // create and set up the window.
-    JFrame frame = new JFrame("TOTALLY KICK ASS BUTT SECKS ROCKING GAME");
+    JFrame frame = new JFrame("TOTALLY KICK ASS ROCKING GAME");
 
     // make the program close when the window closes
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
