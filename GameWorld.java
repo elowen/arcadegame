@@ -16,6 +16,7 @@ class GameWorld extends JComponent implements KeyListener {
 	private ArrayList<Item> bulletList=new ArrayList<Item>();
 	private ArrayList<Explosion> explosionList=new ArrayList<Explosion>();
 	private Image[] explosion= new Image[16];
+	private Image ship,badShip;
 	private int enemySpeed =1;
 	private int lives = 1;
 	private int points =0;
@@ -33,6 +34,14 @@ class GameWorld extends JComponent implements KeyListener {
 		}
 		//Image Loader
 
+		try {
+			badShip = ImageIO.read(new File("badShip.png"));
+			ship = ImageIO.read(new File("ship.png"));
+		} catch(Exception e) {
+			badShip=null;
+			ship = null;
+		}
+		
 		for(int x=0;x<16;x++){
 			try {
 				explosion[x] = ImageIO.read(new File("boom"+x+".gif"));
@@ -130,7 +139,7 @@ class GameWorld extends JComponent implements KeyListener {
 
 			g.setColor(Color.red);
 			for(Item e: enemyList){
-				g.drawRect(e.getX(),e.getY(),30,30);
+				g.drawImage(badShip,e.getX(),e.getY(),null);
 				e.setY(e.getY() + enemySpeed);
 				if(touching(e,player)){
 					explosionList.add(new Explosion(e.getX()-30,e.getY()-30));
@@ -164,7 +173,7 @@ class GameWorld extends JComponent implements KeyListener {
 
 
 			g.setColor(Color.blue);
-			g.drawRect(player.getX(), player.getY(), 30, 30);
+			g.drawImage(ship, player.getX(), player.getY(), null);
 
 			g.setColor(Color.white);
 			for(Dust f : snow) {
