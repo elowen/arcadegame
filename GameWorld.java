@@ -8,6 +8,7 @@ import javax.imageio.*;
 import javax.swing.Timer;
 
 import java.awt.event.*;
+import javax.sound.sampled.*;
 
 
 class GameWorld extends JComponent implements KeyListener {
@@ -24,6 +25,7 @@ class GameWorld extends JComponent implements KeyListener {
 	Item player = new Item(250,420,32,30);
 	long elapsed;
 	public GameWorld( ) {
+		//Sound s= new Sound("sample.wav");
 		timer.start();
 		elapsed = new Date().getTime();
 		enemyList = new ArrayList<Item>();
