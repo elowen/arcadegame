@@ -16,12 +16,12 @@ class GameWorld extends JComponent implements KeyListener {
 	private ArrayList<Item> bulletList=new ArrayList<Item>();
 	private ArrayList<Explosion> explosionList=new ArrayList<Explosion>();
 	private Image[] explosion= new Image[16];
-	private Image ship,badShip;
+	private Image ship,badShip,laser;
 	private int enemySpeed =1;
 	private int lives = 1;
 	private int points =0;
 	private int screen =0;
-	Item player = new Item(250,420,30,30);
+	Item player = new Item(250,420,32,30);
 	long elapsed;
 	public GameWorld( ) {
 		timer.start();
@@ -37,9 +37,11 @@ class GameWorld extends JComponent implements KeyListener {
 		try {
 			badShip = ImageIO.read(new File("badShip.png"));
 			ship = ImageIO.read(new File("ship.png"));
+			laser = ImageIO.read(new File("laser.png"));
 		} catch(Exception e) {
 			badShip=null;
 			ship = null;
+			laser=null;
 		}
 		
 		for(int x=0;x<16;x++){
@@ -98,7 +100,7 @@ class GameWorld extends JComponent implements KeyListener {
 		}else if(key == KeyEvent.VK_DOWN){
 			player.setY(player.getY()+5);
 		}else if(key == KeyEvent.VK_SPACE){
-			bulletList.add(new Item(player.getX()+10,player.getY(),8,30));
+			bulletList.add(new Item(player.getX()+16,player.getY()+10,8,30));
 		}else if(key == KeyEvent.VK_ESCAPE){
 			System.exit(0);
 		}else if(key==KeyEvent.VK_ENTER){
@@ -151,8 +153,8 @@ class GameWorld extends JComponent implements KeyListener {
 				}
 			}
 			for(Item e: bulletList){
-				g.fillRect(e.getX(), e.getY(), 8, 30);
-				e.setY(e.getY()-8);
+				g.drawImage(laser,e.getX(), e.getY(),null);
+				e.setY(e.getY()-10);
 				for(Item e2: enemyList){
 					if(touching(e,e2)&&!e2.getRemove()){
 						explosionList.add((new Explosion(e.getX()-30,e.getY()-30)));
