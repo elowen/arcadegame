@@ -1,10 +1,11 @@
 import java.util.*;
 
-
+//class used for enemy ships
 class Item extends Object{
 	private int x,y,w,h;
 	private boolean remove=false;
 
+	//passes in location and size
 	public Item(int x, int y,int w,int h){
 	this.x = x;
 	this.y = y;
