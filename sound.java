@@ -9,6 +9,7 @@ class Sound {
   private AudioInputStream is;
   private long last_play = 0;
 
+//passes in the file name of the sound clip
   public Sound(String name) {
     try {
       clip = AudioSystem.getClip( );
@@ -17,6 +18,7 @@ class Sound {
     } catch(Exception e) {
     }
   }
+
 
   public void play( ) {
     long now = new Date( ).getTime( );
