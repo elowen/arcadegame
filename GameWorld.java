@@ -70,14 +70,13 @@ class GameWorld extends JComponent implements KeyListener {
 					enemyList.add(new Item((int)(Math.random()*450),-50,34,30));
 				}
 				if(counter%30==0){
-					if(spawnSpeed>0)
+					if(spawnSpeed>1)
 						spawnSpeed--;
 				}
 				if(counter%45==0){
 					if(enemySpeed<30)
 						enemySpeed++;
 				}
-				System.out.println(counter);
 				counter++;
 			}
 		}
@@ -142,7 +141,7 @@ class GameWorld extends JComponent implements KeyListener {
 			//draw the background
 			g.setColor(Color.black);
 			g.fillRect(0, 0, 500, 500);
-			//draw the snow
+			//draw the stars
 			g.setColor(Color.white);
 			for(Dust f : snow) {
 				f.draw(g);
@@ -190,6 +189,11 @@ class GameWorld extends JComponent implements KeyListener {
 			g.setFont(new Font("Sarif", Font.BOLD,20));
 			g.drawString("Lives: "+lives, 0, 20);//draw lives
 			g.drawString("Score: "+points, 350, 20);//draw score
+			
+			if(counter==4294967296L){
+				System.out.println("You Beat the Game!");
+				g.drawString("Programmed by John Stanesa, Mike Hudick and Emily Owen",0,100);
+			}
 
 			/* force an update */
 			revalidate( );
