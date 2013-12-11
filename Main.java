@@ -18,7 +18,7 @@ public class Main {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     // add the GameWorld component
-    //frame.add(new GameWorld( ));
+    
 	GameWorld g = new GameWorld();
 	frame.add(g);
 	frame.addKeyListener(g);	
