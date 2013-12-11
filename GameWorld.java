@@ -22,10 +22,14 @@ class GameWorld extends JComponent implements KeyListener {
 	private int lives = 1;
 	private int points =0;
 	private int screen =0;
+	private Score j;
+	private Sound s= new Sound("sample.aiff");
+	private int[] tempInt= new int[5];
 	Item player = new Item(250,420,32,30);
 	long elapsed;
+	private boolean saved=false;
 	public GameWorld( ) {
-		//Sound s= new Sound("sample.wav");
+		s.play();
 		timer.start();
 		elapsed = new Date().getTime();
 		enemyList = new ArrayList<Item>();
@@ -38,8 +42,8 @@ class GameWorld extends JComponent implements KeyListener {
 
 		try {
 			badShip = ImageIO.read(new File("badShip.png"));
-			ship = ImageIO.read(new File("ship.png"));
-			laser = ImageIO.read(new File("laser.png"));
+			ship = ImageIO.read(new File("Ship.png"));
+			laser = ImageIO.read(new File("Laser.png"));
 		} catch(Exception e) {
 			badShip=null;
 			ship = null;
@@ -118,10 +122,21 @@ class GameWorld extends JComponent implements KeyListener {
 
 	public void paintComponent(Graphics g) {
 
-		if(screen==0){
 			long now = new Date().getTime();
 			double seconds = (now-elapsed)/1000.0f;
 			elapsed=now;
+			if(now-s.getTime()>46000){
+				s.play();
+			}			
+		if(screen==0){
+			g.setColor(Color.black);
+			g.fillRect(0,0,500,500);
+			g.setColor(Color.magenta);
+			g.setFont(new Font("Sarif", Font.BOLD,42));
+			g.drawString("Totally Kick Ass", 75, 125);
+			g.drawString("Rockin Game", 110, 175);
+			g.drawString("Press Enter to Begin", 35, 225);
+
 			
 			for(Dust f : snow) {
 				f.update(seconds);
@@ -133,9 +148,6 @@ class GameWorld extends JComponent implements KeyListener {
 			if(lives<1){
 				screen++;
 			}
-			long now = new Date().getTime();
-			double seconds = (now-elapsed)/1000.0f;
-			elapsed=now;
 
 			/* set the color to light blue */
 			g.setColor(Color.black);
@@ -233,6 +245,24 @@ class GameWorld extends JComponent implements KeyListener {
 			explosionList=tempExplosion;
 		}
 		else if(screen==2){
+			j=new Score(points);
+			j.compareScores();	
+			g.setColor(Color.black);
+			g.fillRect(0,0,500,500);
+			g.setColor(Color.magenta);
+			g.setFont(new Font("Sarif", Font.BOLD,42));
+			g.drawString("You Deaded :C", 75, 125);
+			g.drawString("High Scores", 110, 175);
+			if(!saved){
+			saved=true;
+			for(int i=0; i<5; i++){
+				tempInt[i]=j.getScores(i);
+			}			
+			for(int i=0; i<5; i++){
+				g.drawString(""+tempInt[i], 200, 250+(i*50));
+			}
+			j.writeScore();
+			}
 
 		}
 

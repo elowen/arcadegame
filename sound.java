@@ -31,4 +31,7 @@ class Sound {
     } catch(Exception e) {
     }
   }
+	public long getTime(){
+		return last_play;
+	}
 }
