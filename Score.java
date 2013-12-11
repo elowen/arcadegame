@@ -9,17 +9,21 @@ import java.util.Locale;
 import java.io.PrintWriter;
 class Score {
 	public Score (int current){
+		
+		//sets the player's points at the end of the game
 		currentScore=current;
+		
+		//initializes the scoreboard array empty
 		scoreBoard = new int[5]; 
 		for(int i=0; i<5; i++){
 			scoreBoard[i]=0;
 		}
-		//File file=new File("scores.txt");
 		
+		//create a Scanner to open a text file and store the containing numbers into the scoreBoard array
 		try{
 			s=new Scanner(new BufferedReader(new FileReader("scores.txt")));
 			while(s.hasNext()){
-				//System.out.println(line);
+				
 				temp=s.nextInt();
 				scoreBoard[count]=temp;
 				count++;
@@ -28,14 +32,18 @@ class Score {
 			System.out.println("IO Exception");
 			
 		} finally{
+			//closes the file
 			if(s !=null){
 				s.close();
 			}
 		}
 	}
+	
+	//determines if the player scored highly enough to make it into the high scores record
 	public void compareScores(){
 		for(int i=0; i<5; i++){
-		//	System.out.println(i+":"+currentScore+" "+scoreBoard[i]);
+			
+			//places the new score into the appropriate place on the scoreboard
 			if(currentScore>scoreBoard[i]){
 				temp=scoreBoard[i];
 				scoreBoard[i]=currentScore;
@@ -43,17 +51,15 @@ class Score {
 				
 			}
 		} 
-		System.out.println("Current Score" + currentScore);
-		for(int i=0; i<5; i++){
-			System.out.println(scoreBoard[i]);
-		}
-		
 	}
+	
+	//returns a specific score, is called by a loop in GameWorld
 	public int getScores(int index){
 		i=index;
 		return scoreBoard[i];
 	}
 
+	//writes the new scoreboard to the text file for long term storage
 	public void writeScore(){
 		try{PrintWriter writer= new PrintWriter("scores.txt", "UTF-8");
 		writer.flush();
@@ -65,6 +71,7 @@ class Score {
 			System.out.println("File not found.");
 		}
 	}
+
 	private String line;
 	private int i;
 	private int[] scoreBoard;
