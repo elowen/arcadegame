@@ -1,4 +1,4 @@
-
+//runs the explosion gif upon the event of a collision
 public class Explosion extends Object implements Runnable{
 	private int x,y,current;
 	private Thread t;
