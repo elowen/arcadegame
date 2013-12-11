@@ -1,13 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.io.*;
-import javax.imageio.*;
-import javax.swing.Timer;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.*;
-
 
 class Dust {
   private double dx, dy, x,y;
@@ -34,6 +26,3 @@ class Dust {
     if(x > 500) x = 0;
   }
 }
-
-
-

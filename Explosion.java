@@ -25,5 +25,4 @@ public class Explosion extends Object implements Runnable{
 	public int getCurrent() {
 		return current;
 	}
-	
 }

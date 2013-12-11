@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
 import java.util.*;
 import javax.sound.sampled.*;
 import java.io.*;
@@ -8,7 +6,7 @@ class Sound {
   private Clip clip;
   private AudioInputStream is;
   private long last_play = 0;
-
+  
 //passes in the file name of the sound clip
   public Sound(String name) {
     try {
@@ -18,7 +16,6 @@ class Sound {
     } catch(Exception e) {
     }
   }
-
 
   public void play( ) {
     long now = new Date( ).getTime( );

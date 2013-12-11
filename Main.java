@@ -1,14 +1,5 @@
 import javax.swing.*;
 
-import java.awt.*;
-import java.util.*;
-
-import javax.swing.Timer;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-
 public class Main {
   public static void main(String args[]) {
     // create and set up the window.
@@ -29,4 +20,3 @@ public class Main {
 	
   }    
 }
-
