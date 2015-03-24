@@ -1,4 +1,9 @@
 arcadegame
 ==========
+Instructions for installation:
 
-arcadegame
+Move to install directory.
+
+javac *.java
+
+java Main
